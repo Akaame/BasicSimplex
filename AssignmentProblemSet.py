@@ -1,7 +1,7 @@
 
 import numpy as np
 import SetCoverProblem as scp
-
+from Utils import Utils
 class AssignmentProblemSolver:
     def solve(self, matrix):
         """ 
@@ -38,7 +38,7 @@ class AssignmentProblemSolver:
             if cover == matrix.shape[0]: # Cizgi sayisi matrisin satir sayisina esitse cevap bulundu
                 # asama 3.1: Iyi senaryo
                 print "Asama 3.1 Baslangici"
-                return matrix # TODO eslestirme yap
+                return Utils.matchMatrix(matrix)
             else: # Degilse asil algoritma basliyor.
                 print "Asama 3.2 Baslangici"
                 # TODO
@@ -53,9 +53,10 @@ class AssignmentProblemSolver:
                 mask = np.ones(matrix.shape[0], dtype=np.bool)
                 mask[row_indices] = False
                 matrix[mask] -= smallest
-                print "Matrisin son hali", matrix
+                
                 # Uzeri cizilmis sutunlara ekle
                 matrix[:, col_indices] += smallest
+                print "Matrisin son hali", matrix
                 
 aps = AssignmentProblemSolver()
 # Iyi senaryo

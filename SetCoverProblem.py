@@ -39,12 +39,12 @@ class Utils:
         for idx, index in enumerate(indices):
             row_index = index[0]
             col_index = index[1]
-            rel_matrix[idx][row_index] = True
-            rel_matrix[idx][col_index+mat_len] = True
+            rel_matrix[idx][row_index+mat_len] = True
+            rel_matrix[idx][col_index] = True
         prob = SetCover()
         sol, sol_matrix = prob.solve(rel_matrix, np.ones(rel_matrix.shape[1]))
         
-        return sol, sol_matrix[:mat_len], sol_matrix[mat_len:]
+        return sol, sol_matrix[mat_len:], sol_matrix[:mat_len]
 
 # mat = np.array([0,1,1,1,0,0,0,1,1]).reshape([3,3])
 # print Utils.getMinimumSetCover(mat)
